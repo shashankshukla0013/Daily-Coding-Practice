@@ -45,3 +45,40 @@ public class Solution extends VersionControl {
         return left;
     }
 }
+
+https://leetcode.com/problems/monotonic-array/description/
+class Solution {
+    public boolean isMonotonic(int[] nums) {
+        int countI=0,countD = 0,countE=0;
+        for(int i=0;i<nums.length-1;i++){
+            if(nums[i]<nums[i+1]) countI++;
+            else if (nums[i]>nums[i+1]) countD++;
+            else countE++;
+        }
+        if((countI+countE==nums.length-1) || (countD+countE==nums.length-1)) return true;
+        else return false;
+    }
+}
+
+OR
+
+class Solution {
+    public boolean isMonotonic(int[] nums) {
+        boolean increasing = true;
+        boolean decreasing = true;
+
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] > nums[i - 1]) {
+                decreasing = false;
+            } else if (nums[i] < nums[i - 1]) {
+                increasing = false;
+            }
+
+            if (!increasing && !decreasing) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
